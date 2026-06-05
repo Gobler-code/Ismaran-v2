@@ -6,7 +6,7 @@ const quizSchema = new mongoose.Schema(
             type: String,
             required:[true, 'Title is required'],
         },
-        option:{
+        options:{
             type: [String],
             required : [true,'Option is required'],
         },

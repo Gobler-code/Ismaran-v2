@@ -10,6 +10,11 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if ( !email || !password) {
+  setError('Please fill in all fields')
+  setLoading(false)
+  return
+}
     setLoading(true)
     setError('')
     
@@ -33,7 +38,7 @@ if (data.success) {
 }
 
     } catch (err) {
-      setError(err.message || "Invalid credentials.")
+      setError("Something went wrong!")
     } finally {
       setLoading(false)
     }

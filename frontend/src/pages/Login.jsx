@@ -1,0 +1,81 @@
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+
+function Login() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    setError('')
+    
+    try {
+      const response = await fetch('/api/auth/login', {
+       method: 'POST',
+       headers: {
+           'Content-Type':'application/json'
+       },
+       body:  JSON.stringify({email,password})
+       
+      })
+      const data = await response.json()
+      // 2. Store the token in localStorage
+     localStorage.setItem('token',data.token);
+
+      // 3. Navigate to /dashboard
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err.message || "Invalid credentials.")
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="glass p-8 rounded-2xl w-full max-w-md">
+        <h1 className="font-display text-3xl font-bold mb-6" style={{color: 'var(--neon)'}}>
+          Welcome back
+        </h1>
+        
+        {/* Show error if exists */}
+        {error && <p style={{color: 'red'}}>{error}</p>}
+        
+        {/* Email input */}
+        <input
+           type = "email"
+           value = {email}
+           onChange={(e)=> setEmail(e.target.value)}
+           placeholder='Email'
+           className="w-full p-3 rounded-xl mb-4 outline-none text-white"
+            style={{background: 'var(--input)', border: '1px solid var(--border)'}}
+            />
+        
+        {/* Password input */}
+        <input
+           type = "password"
+           value = {password}
+           onChange={(e)=>{ setPassword(e.target.value)}}
+           placeholder='Password'
+           className="w-full p-3 rounded-xl mb-4 outline-none text-white :"
+           style={{background: 'var(--input)', border: '1px solid var(--border)'}}
+        />
+        
+        {/* Submit button — show "Loading..." when loading */}
+        <button onClick={handleSubmit} disabled={loading} className="w-full p-3 rounded-xl font-semibold mt-2 btn-glow hover:opacity-90 hover:-translate-y-0.5 transition-all">
+            {loading ? 'Logging in ...' :'Login'}
+        </button>
+        {/* Link to signup page */}
+          <Link to="/signup" className="block text-center mt-4" style={{color: 'var(--neon)'}}>
+               Don't have an account? Sign up
+           </Link>
+      </div>
+    </div>
+  )
+}
+
+export default Login

@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.4 0.2 30);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.18 0.035 265);
+  --muted: oklch(0.22 0.04 265);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --primary: oklch(0.78 0.18 235);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --neon: oklch(0.82 0.2 230);
+  --violet: oklch(0.65 0.25 295);
+}
+
+@layer base {
+  * { border-color: var(--border); box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: radial-gradient(ellipse at top, oklch(0.18 0.05 265) 0%, oklch(0.08 0.025 265) 60%, oklch(0.05 0.02 265) 100%);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    margin: 0;
+  }
+}
+
+@layer components {
+  .glass {
+    background: color-mix(in oklab, var(--card) 40%, transparent);
+    backdrop-filter: blur(20px) saturate(150%);
+    border: 1px solid color-mix(in oklab, var(--neon) 20%, transparent);
+    box-shadow: 0 8px 40px -10px color-mix(in oklab, var(--neon) 25%, transparent),
+      inset 0 1px 0 color-mix(in oklab, white 10%, transparent);
+  }
+
+  .btn-glow {
+    background: linear-gradient(135deg, var(--neon), var(--violet));
+    color: oklch(0.1 0.02 265);
+    font-weight: 600;
+    box-shadow: 0 0 30px color-mix(in oklab, var(--neon) 50%, transparent),
+      0 10px 40px -10px color-mix(in oklab, var(--violet) 60%, transparent);
+    transition: all 0.3s ease;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 20px color-mix(in oklab, var(--neon) 60%, transparent),
+      0 0 40px color-mix(in oklab, var(--neon) 30%, transparent);
+  }
+
+  .bg-card-40 {
+    background: color-mix(in oklab, var(--card) 40%, transparent);
+  }
+}

@@ -3,4 +3,4 @@ function Dashboard() {
     <h1 style={{color: 'var(--neon)'}}>Dash board</h1>
   </div>
 }
-export default Dashboard
+export default Dashboard;

@@ -23,11 +23,15 @@ function Login() {
        
       })
       const data = await response.json()
-      // 2. Store the token in localStorage
-     localStorage.setItem('token',data.token);
+      console.log(data);
 
-      // 3. Navigate to /dashboard
-      navigate("/dashboard");
+if (data.success) {
+  localStorage.setItem('token', data.token)
+  navigate('/dashboard')
+} else {
+  setError(data.error || 'Invalid credentials')
+}
+
     } catch (err) {
       setError(err.message || "Invalid credentials.")
     } finally {

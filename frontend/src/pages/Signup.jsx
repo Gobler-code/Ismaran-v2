@@ -33,7 +33,7 @@ function Signup() {
       console.log(data);
 
 if (data.success) {
-  localStorage.setItem('token', data.token)
+  localStorage.setItem('token', data.data.token)
   navigate('/dashboard')
 } else {
   setError(data.error || 'Invalid credentials')

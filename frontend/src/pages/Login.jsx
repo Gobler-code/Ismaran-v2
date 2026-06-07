@@ -28,10 +28,10 @@ function Login() {
        
       })
       const data = await response.json()
-      console.log(data);
+      console.log('full response:', data)
 
 if (data.success) {
-  localStorage.setItem('token', data.token)
+  localStorage.setItem('token', data.data.token)
   navigate('/dashboard')
 } else {
   setError(data.error || 'Invalid credentials')

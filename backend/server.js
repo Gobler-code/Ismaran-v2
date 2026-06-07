@@ -17,7 +17,7 @@ app.use('/api/ai',aiRoutes);
 
 
 app.get('/', (req, res) => {
-  res.json({ success: true, message: 'Recallify V2 API is running' })
+  res.json({ success: true, message: 'Ismaran V2 API is running' })
 })
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {

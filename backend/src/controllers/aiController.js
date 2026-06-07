@@ -90,6 +90,17 @@ const savedFlashcards = await Flashcard.insertMany(flashcardsToSave);
     }
 };
 
+const getFlashcards = async (req,res,next) =>{
+    try{
+        const flashcards = await Flashcard.find({document: req.params.documentId,user: req.user.id});
+        res.status(200).json({
+    success: true,
+    data: { flashcards }
+});
+    }catch(error){
+        next(error)
+    }
+}
 const generateQuiz = async (req,res,next) =>{
     try{
         const document = await Document.findById(req.params.documentId);
@@ -149,6 +160,18 @@ const savedQuiz = await Quiz.insertMany(quizToSave);
         data: {quiz: savedQuiz}
     })
 
+    }catch(error){
+        next(error)
+    }
+} 
+
+  const getQuiz = async (req,res,next) =>{
+    try{
+        const quizs = await Quiz.find({document: req.params.documentId,user: req.user.id});
+        res.status(200).json({
+    success: true,
+    data: {quizs }
+});
     }catch(error){
         next(error)
     }
@@ -227,6 +250,18 @@ const savedHighlight = await Highlight.insertMany(hightlightsToSave);
         data: {highlight: savedHighlight}
     })
 
+    }catch(error){
+        next(error)
+    }
+}
+
+const getHighlight = async (req,res,next) =>{
+    try{
+        const highlights = await Highlight.find({document: req.params.documentId,user: req.user.id});
+        res.status(200).json({
+    success: true,
+    data: { highlights }
+});
     }catch(error){
         next(error)
     }
@@ -311,11 +346,27 @@ const savedVocab = await Vocab.insertMany(vocabsToSave);
     }
 }
 
+const getVocab = async (req,res,next) =>{
+    try{
+        const vocabs = await Vocab.find({document: req.params.documentId,user: req.user.id});
+        res.status(200).json({
+    success: true,
+    data: { vocabs}
+});
+    }catch(error){
+        next(error)
+    }
+}
+
 module.exports = { 
     generateFlashcards, 
     generateQuiz, 
     generateHighlight, 
-    generateVocab 
+    generateVocab,
+    getFlashcards,
+    getQuiz,
+    getHighlight,
+    getVocab
 };
 
 

@@ -358,6 +358,130 @@ const getVocab = async (req,res,next) =>{
     }
 }
 
+  const deleteFlashcard = async(req,res,next) => {
+      try{
+          const flashcard= await Flashcard.findById(req.params.id);
+          
+          if(!flashcard) {
+              return res.status(404).json({
+                  success: false,
+                  error: 'flashcard not found'
+              });
+          }
+  
+          if(flashcard.user.toString() !== req.user.id) {
+              return res.status(403).json({
+                  success: false,
+                  error: 'Not authorized'
+              });
+          }
+  
+          await flashcard.deleteOne();
+  
+          res.status(200).json({
+              success: true,
+              message: 'flashcard deleted'
+          });
+  
+      }catch(error){
+          next(error);
+      }
+    }
+
+      const deleteQuiz = async(req,res,next) => {
+      try{
+          const quiz= await Quiz.findById(req.params.id);
+          
+          if(!quiz) {
+              return res.status(404).json({
+                  success: false,
+                  error: 'flashcard not found'
+              });
+          }
+  
+          if(quiz.user.toString() !== req.user.id) {
+              return res.status(403).json({
+                  success: false,
+                  error: 'Not authorized'
+              });
+          }
+  
+          await quiz.deleteOne();
+  
+          res.status(200).json({
+              success: true,
+              message: 'quiz deleted'
+          });
+  
+      }catch(error){
+          next(error);
+      }
+    }
+
+      const deleteHighlight = async(req,res,next) => {
+      try{
+          const highlight= await Highlight.findById(req.params.id);
+          
+          if(!highlight) {
+              return res.status(404).json({
+                  success: false,
+                  error: 'flashcard not found'
+              });
+          }
+  
+          if(highlight.user.toString() !== req.user.id) {
+              return res.status(403).json({
+                  success: false,
+                  error: 'Not authorized'
+              });
+          }
+  
+          await highlight.deleteOne();
+  
+          res.status(200).json({
+              success: true,
+              message: 'highlight deleted'
+          });
+  
+      }catch(error){
+          next(error);
+      }
+    }
+
+      const deleteVocab = async(req,res,next) => {
+      try{
+          const vocab= await Vocab.findById(req.params.id);
+          
+          if(!vocab) {
+              return res.status(404).json({
+                  success: false,
+                  error: 'vocab not found'
+              });
+          }
+  
+          if(vocab.user.toString() !== req.user.id) {
+              return res.status(403).json({
+                  success: false,
+                  error: 'Not authorized'
+              });
+          }
+  
+          await vocab.deleteOne();
+  
+          res.status(200).json({
+              success: true,
+              message: 'vocab deleted'
+          });
+  
+      }catch(error){
+          next(error);
+      }
+    }
+
+
+
+
+
 module.exports = { 
     generateFlashcards, 
     generateQuiz, 
@@ -366,7 +490,11 @@ module.exports = {
     getFlashcards,
     getQuiz,
     getHighlight,
-    getVocab
+    getVocab,
+    deleteFlashcard,
+    deleteHighlight,
+    deleteQuiz,
+    deleteVocab
 };
 
 

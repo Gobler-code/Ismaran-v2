@@ -22,6 +22,7 @@ export default function FlashcardTool({ flashcards, onUpdate, isExpanded, onTogg
   } catch (err) {
     console.log('Delete failed')
   }
+  
   }
 
   const handleFlip = (index) => {

@@ -47,7 +47,27 @@ function Dashboard() {
   const handleOpenNote = (docId) => {
     navigate(`/tools/${docId}`)
   }
+const handleDeleteNote = async (docId) => {
+  const confirmed = window.confirm('Are you sure you want to delete this note?')
+  if (!confirmed) return
 
+  try {
+    const response = await fetch(`/api/documents/${docId}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      },
+    })
+    const data = await response.json()
+    if (data.success) {
+      setDocuments(prev => prev.filter(doc => doc._id !== docId))
+    } else {
+      setError('Failed to delete note')
+    }
+  } catch (error) {
+    setError('Failed to delete note')
+  }
+}
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
@@ -303,6 +323,7 @@ function Dashboard() {
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     fontSize: '16px'
                   }}>📄</div>
+                  
                   <span style={{
                     fontSize: '11px',
                     color: darkMode ? 'oklch(0.72 0.03 250)' : '#999',
@@ -310,6 +331,21 @@ function Dashboard() {
                   }}>
                     {formatDate(doc.createdAt)}
                   </span>
+                  <button
+                 onClick={(e) => {
+                      e.stopPropagation()
+                        handleDeleteNote(doc._id)
+                   }}
+                        className="px-2 py-1 rounded-lg text-xs font-semibold transition-all hover:opacity-80"
+                          style={{
+                                background: 'oklch(0.65 0.22 25 / 20%)',
+                                color: 'oklch(0.65 0.22 25)',
+                                border: '1px solid oklch(0.65 0.22 25 / 30%)',
+                                cursor: 'pointer'
+                                 }}
+                             >
+                          🗑️
+                      </button>
                 </div>
 
                 {/* Title */}

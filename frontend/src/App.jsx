@@ -14,11 +14,6 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/tools/:docId" element={<Tools />} />
       </Routes>
-       <div className="min-h-screen flex items-center justify-center">
-      <h1 className="font-display text-4xl font-bold" style={{color: 'var(--neon)'}}>
-        Ismaran V2 — Working
-      </h1>
-    </div>
     </BrowserRouter>
   )
 }

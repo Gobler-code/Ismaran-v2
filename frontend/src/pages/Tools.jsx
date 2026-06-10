@@ -168,7 +168,7 @@ useEffect(() => {
       body: JSON.stringify({ words })
     })
     const data = await response.json()
-    if (data.success) setVocabInsights(data.data.vocab)
+    if (data.success) setVocabInsights(prev => [...prev, ...data.data.vocab])
   } catch (err) {
     setError('Failed to generate vocab')
   }

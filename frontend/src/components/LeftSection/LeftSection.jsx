@@ -6,7 +6,7 @@ import EditableDocument from './EditableDocument'
 
 export default function LeftSection({ 
   content, setContent, hasContent, setHasContent, onGenerate, isGenerated, loading,
-  vocabList, onAddToVocab, onRemoveFromVocab, onClearVocabList, onSendVocabBatchToTool,docId
+  vocabList, onAddToVocab, onRemoveFromVocab, onClearVocabList, onSendVocabBatchToTool,docId,isMobile
 }) {
   const [inputText, setInputText] = useState('')
   const [uploadedFileName, setUploadedFileName] = useState('')
@@ -87,8 +87,9 @@ export default function LeftSection({
 
   return (
     <div style={{
-      width: '75%',
-      height: '100vh',
+      width: isMobile ? '100%' : '75%',
+      height: '100%',
+      minHeight: '100%',
       borderRight: '1px solid oklch(1 0 0 / 10%)',
       display: 'flex',
       flexDirection: 'column',

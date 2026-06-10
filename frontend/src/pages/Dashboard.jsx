@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ismaranLogo from '../assets/ismaran.png'
+import { useTheme } from '../context/ThemeContext'
 
 function Dashboard() {
   const [documents, setDocuments] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
-  const [darkMode, setDarkMode] = useState(true)
   const [search, setSearch] = useState('')
   const navigate = useNavigate()
+
+  const { darkMode, setDarkMode } = useTheme()
 
   const fetchDocuments = async () => {
     try {
@@ -112,32 +114,13 @@ const handleDeleteNote = async (docId) => {
             fontWeight: 700,
             fontSize: '20px',
             color: darkMode ? 'oklch(0.82 0.2 230)' : '#4f46e5'
-          }}>Ismaran</span>
+          }}></span>
         </div>
 
         {/* Right side */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
           {/* Dark mode toggle */}
-          <button
-            onClick={() => setDarkMode(!darkMode)}
-            style={{
-              background: darkMode ? 'oklch(0.22 0.04 265)' : '#e8eeff',
-              border: 'none',
-              borderRadius: '50px',
-              padding: '8px 16px',
-              cursor: 'pointer',
-              color: darkMode ? 'oklch(0.82 0.2 230)' : '#4f46e5',
-              fontSize: '14px',
-              fontWeight: 500,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              transition: 'all 0.2s'
-            }}
-          >
-            {darkMode ? '☀️ Light' : '🌙 Dark'}
-          </button>
-
+       
           {/* Logout */}
           <button
             onClick={handleLogout}

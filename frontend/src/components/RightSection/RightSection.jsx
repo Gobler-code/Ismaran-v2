@@ -66,7 +66,7 @@ export default function RightSection({
   activeTool, onToolClick,
   flashcards, quizzes, highlights, vocabInsights,
   setFlashcards, setQuizzes, setHighlights, setVocabInsights,
-  docId
+  docId,isMobile,vocabList
 }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -90,7 +90,10 @@ export default function RightSection({
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'
-        }
+        },
+          body: toolId === 'vocab' 
+    ? JSON.stringify({ words: vocabList }) 
+    : undefined
       })
       const data = await response.json()
       if (data.success) {
@@ -101,6 +104,9 @@ export default function RightSection({
       } else {
         setError(`Failed to generate ${toolId}`)
       }
+      console.log('toolId:', toolId)
+console.log('vocabList:', vocabList)
+console.log('docId:', docId)
     } catch (err) {
       setError('Something went wrong')
     } finally {
@@ -127,7 +133,10 @@ export default function RightSection({
       <div
         className="flex flex-col h-screen transition-all duration-300 overflow-hidden"
         style={{
-          width: activeTool ? '55%' : '25%',
+          width: isMobile ? '100%' : (activeTool ? '55%' : '25%'),
+          height: '100vh',
+           minHeight: '100%',
+            paddingBottom: isMobile ? '56px' : '0',
           minWidth: activeTool ? '300px' : '180px',
           borderLeft: '1px solid oklch(1 0 0 / 10%)',
           background: 'oklch(0.15 0.03 265)',

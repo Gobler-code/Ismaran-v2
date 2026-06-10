@@ -34,6 +34,10 @@ export default function VocabSelection({ onAddToVocab }) {
     return;
   }
 
+ // Get position from touch or mouse
+    const clientX = e.changedTouches ? e.changedTouches[0].clientX : e.clientX
+    const clientY = e.changedTouches ? e.changedTouches[0].clientY : e.clientY
+
   setSelectedText(trimmedText);
   setPopupPosition({
     top: e.clientY - 44,  // use mouse Y position
@@ -48,12 +52,15 @@ export default function VocabSelection({ onAddToVocab }) {
       }
     };
 
-    window.addEventListener("mouseup", handleSelection);
-    window.addEventListener("mousedown", handleClickOutside);
+  window.addEventListener("mouseup", handleSelection);
+  window.addEventListener("touchend", handleSelection) 
+  window.addEventListener("mousedown", handleClickOutside);
+  window.addEventListener("touchstart", handleClickOutside) 
     return () => {
-      window.removeEventListener("mouseup", handleSelection);
-      window.removeEventListener("mousedown", handleClickOutside);
-      
+        window.removeEventListener("mouseup", handleSelection);
+    window.removeEventListener("touchend", handleSelection) 
+    window.removeEventListener("mousedown", handleClickOutside);
+    window.removeEventListener("touchstart", handleClickOutside)  
     };
   }, []);
 

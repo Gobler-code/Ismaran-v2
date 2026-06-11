@@ -52,7 +52,7 @@ if (data.success) {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="glass p-8 rounded-2xl w-full max-w-md">
          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <a href="http://localhost:8080/">
+                  <a href="https://ismaran-landing.vercel.app/">
                    <img src={ismaranLogo} alt="Ismaran" style={{ height: '36px', width: '36px', objectFit: 'contain' }} />
                   </a>
                         </div>

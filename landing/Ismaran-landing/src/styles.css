@@ -1,0 +1,118 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-neon: var(--neon);
+  --color-violet: var(--violet);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-sans: "Inter", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.14 0.03 265);
+  --foreground: oklch(0.98 0.005 250);
+  --card: oklch(0.18 0.035 265);
+  --card-foreground: oklch(0.98 0.005 250);
+  --popover: oklch(0.18 0.035 265);
+  --popover-foreground: oklch(0.98 0.005 250);
+  --primary: oklch(0.78 0.18 235);
+  --primary-foreground: oklch(0.12 0.03 265);
+  --secondary: oklch(0.25 0.05 265);
+  --secondary-foreground: oklch(0.98 0.005 250);
+  --muted: oklch(0.22 0.04 265);
+  --muted-foreground: oklch(0.72 0.03 250);
+  --accent: oklch(0.65 0.22 295);
+  --accent-foreground: oklch(0.98 0.005 250);
+  --destructive: oklch(0.65 0.22 25);
+  --destructive-foreground: oklch(0.98 0.005 250);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.78 0.18 235);
+  --neon: oklch(0.82 0.2 230);
+  --violet: oklch(0.65 0.25 295);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background: radial-gradient(ellipse at top, oklch(0.18 0.05 265) 0%, oklch(0.08 0.025 265) 60%, oklch(0.05 0.02 265) 100%);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+  }
+}
+
+@utility glass {
+  background: color-mix(in oklab, var(--card) 40%, transparent);
+  backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid color-mix(in oklab, var(--neon) 20%, transparent);
+  box-shadow: 0 8px 40px -10px color-mix(in oklab, var(--neon) 25%, transparent),
+              inset 0 1px 0 color-mix(in oklab, white 10%, transparent);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px color-mix(in oklab, var(--neon) 60%, transparent),
+               0 0 40px color-mix(in oklab, var(--neon) 30%, transparent);
+}
+
+@utility btn-glow {
+  background: linear-gradient(135deg, var(--neon), var(--violet));
+  color: oklch(0.1 0.02 265);
+  font-weight: 600;
+  box-shadow: 0 0 30px color-mix(in oklab, var(--neon) 50%, transparent),
+              0 10px 40px -10px color-mix(in oklab, var(--violet) 60%, transparent);
+  transition: all 0.3s ease;
+}
+@utility btn-glow-hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 50px color-mix(in oklab, var(--neon) 70%, transparent),
+              0 20px 50px -10px color-mix(in oklab, var(--violet) 70%, transparent);
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+@utility star-bg {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, white, transparent),
+    radial-gradient(1px 1px at 60px 70px, white, transparent),
+    radial-gradient(1px 1px at 110px 40px, white, transparent),
+    radial-gradient(2px 2px at 160px 120px, white, transparent),
+    radial-gradient(1px 1px at 200px 80px, white, transparent),
+    radial-gradient(1px 1px at 250px 160px, white, transparent),
+    radial-gradient(1px 1px at 300px 50px, white, transparent),
+    radial-gradient(2px 2px at 350px 180px, white, transparent);
+  background-size: 400px 220px;
+  background-repeat: repeat;
+  opacity: 0.4;
+  animation: star-twinkle 4s ease-in-out infinite;
+}

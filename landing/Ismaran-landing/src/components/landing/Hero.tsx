@@ -40,9 +40,12 @@ export function Hero() {
           transition={{ duration: 0.9, delay: 0.4 }}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
-          <button className="rounded-full btn-glow px-8 py-4 text-base transition hover:translate-y-[-2px]">
-            Upload Your PDF
-          </button>
+         <button
+  className="rounded-full btn-glow px-8 py-4 text-base transition hover:translate-y-[-2px]"
+  onClick={() => window.location.href = "https://ismaran-v2.vercel.app/"}
+>
+  Upload Your PDF
+</button>
           <button className="rounded-full border border-border glass px-8 py-4 text-base text-foreground transition hover:border-primary/60">
             Watch Demo
           </button>

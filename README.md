@@ -56,6 +56,7 @@ The platform features a responsive web interface, a landing page, and a robust R
 - Deployed and accessible from anywhere
 
 ---
+[Try it live →](https://ismaran-landing.vercel.app/)
 
 ## 🛠 Tech Stack
 

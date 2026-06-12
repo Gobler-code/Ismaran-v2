@@ -1,4 +1,17 @@
-# 📚 Ismaran V2 - AI-Powered Study Assistant Platform
+# Ismaran V2 - AI-Powered Study Assistant Platform
+
+<div align="center">
+
+<img src="landing/Ismaran-landing/src/assets/ismaran.png" alt="Ismaran Logo" width="120" />
+
+**Transform any document into a complete study session - instantly.**
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20App-6366f1?style=for-the-badge&logo=vercel)](https://recallify-uparjan.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-Gobler--code-181717?style=for-the-badge&logo=github)](https://github.com/Gobler-code/Recallify)
+[![React](https://img.shields.io/badge/React-19.x-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-Build%20Tool-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+
+</div>
 
 A comprehensive, full-stack study assistant platform that leverages AI to generate personalized learning materials from documents. Ismaran helps students and educators create flashcards, quizzes, vocabulary lists, and highlighted summaries with intelligent content generation.
 
@@ -56,7 +69,6 @@ The platform features a responsive web interface, a landing page, and a robust R
 - Deployed and accessible from anywhere
 
 ---
-[Try it live →](https://ismaran-landing.vercel.app/)
 
 ## 🛠 Tech Stack
 

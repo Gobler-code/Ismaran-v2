@@ -34,8 +34,12 @@ Ismaran V2 is a modern web application designed to revolutionize how students st
 The platform features a responsive web interface, a landing page, and a robust REST API backend.
 
 ---
-<video src="frontend\src\assets\ScreenRecording.mp4" width="100%" controls>
+
+
+<video src="https://github.com/user-attachments/assets/13007139-a0f1-4032-a593-ff0000db4bfb" width="100%" controls>
 </video>
+
+
 
 ## ✨ Key Features
 
